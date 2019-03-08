@@ -2,6 +2,7 @@ package;
 
 import fp.ApplicationModel;
 import fp.Layout;
+import fp.component.landingpage.LandingPageComponent;
 import haxe.Timer;
 import js.Browser;
 
@@ -12,12 +13,14 @@ class Main
 	public function new ()
 	{
 		var appModel = new ApplicationModel();
-		var layout = new Layout({
-			appState: appModel.appState
-		});
+		var layout = new Layout({});
 
 		Browser.document.getElementById("fp_container").appendChild(layout.toElement());
 
-		Timer.delay(function() { appModel.setState(ApplicationState.TakeUserPicture); }, 2000);
+		var landingPage = new LandingPageComponent();
+
+		layout.setView(landingPage.view);
+
+		//Timer.delay(function() { appModel.setState(ApplicationState.TakeUserPicture); }, 2000);
 	}
 }
