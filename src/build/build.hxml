@@ -1,0 +1,5 @@
+-cp src
+-dce full
+
+-js bin/FaceParadise.js
+-main Main.hx
