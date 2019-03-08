@@ -1,5 +1,8 @@
 -cp src
--dce full
+
+-lib coconut.data
+-lib coconut.ui
+-lib coconut.vdom
 
 -js bin/FaceParadise.js
 -main Main.hx
