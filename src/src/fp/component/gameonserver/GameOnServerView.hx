@@ -9,6 +9,7 @@ class GameOnServerView extends View
 	@:attribute var currentStep:UInt;
 	@:attribute var currentImage:String;
 	@:attribute var remainingTimePercent:Float;
+	@:skipCheck @:attribute var currentRoundInfo:Array<String>;
 
 	function render() '
 		<div>
