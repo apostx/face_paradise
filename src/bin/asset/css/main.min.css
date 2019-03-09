@@ -6,7 +6,7 @@ body{background-color:#FFF;margin:0;padding:0;font-family:Arial;}
 .fp_button--refresh_room_list{}
 .fp_button--start_game{margin:auto;position:relative;width:max-content;background-color:#DDD;padding:20px 40px;margin-top:50px;border-radius:10px;font-size:1.5em;}
 .fp_button--start_game:hover{background-color:#BBB;}
-.fp_button--exit_from_room{position:relative;font-size:50px;width:50%;color:#ef5050;margin-right:0;margin-left:auto;}
+.fp_button--exit_from_room{position:relative;font-size:50px;width:50px;color:#ef5050;margin-right:0;margin-left:auto;}
 .fp_button--exit_from_room:hover{color:#ea4040;}
 .fp_room_list_container{width:80%;margin:auto;position:relative;margin-top:10%;}
 .fp_room_list_title{display:flex;justify-content:space-between;padding:0 20px;}
@@ -27,4 +27,5 @@ body{background-color:#FFF;margin:0;padding:0;font-family:Arial;}
 .fp_take_pic__my_photo{}
 .fp_take_pic__footer{background-color:#000;height:5em;color:#FFF;position:absolute;bottom:0;width:100%;}
 .fp_take_pic__footer_progress{background-color:#4ae682;height:100%;width:0%;transition:width .2s linear;opacity:1;}
-.fp_take_pic__footer_progress--full{transition:opacity .5s linear,width 0s linear .9s;width:0%;opacity:0;}
+.fp_take_pic__footer_progress--in_progress{transition:opacity .5s linear 3s,width 3s linear;width:100%;opacity:0;}
+.fp_take_pic__footer_progress--empty{transition:opacity 0s linear,width 0s linear;width:0%;opacity:1;}

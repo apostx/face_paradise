@@ -2,6 +2,7 @@ package;
 
 import fp.ApplicationModel;
 import fp.Layout;
+import fp.component.capture.CapturePageComponent;
 import fp.component.landingpage.LandingPageComponent;
 import fp.component.lobby.LobbyComponent;
 import fp.component.takegamepics.TakeGamePicsComponent;
@@ -14,6 +15,9 @@ class Main
 	static function main() new Main();
 
 	var lobbyPage:LobbyComponent;
+	var capturePage:CapturePageComponent;
+	var waitingForPics:WaitingForPicsComponent;
+	var takeGamePics:TakeGamePicsComponent;
 
 	public function new()
 	{
@@ -25,19 +29,29 @@ class Main
 		var landingPage = new LandingPageComponent(
 			function(roomId) {
 				lobbyPage.setRoomId(roomId);
+				layout.setView(capturePage.view);
+			}
+		);
+
+		capturePage = new CapturePageComponent(
+			function() {
 				layout.setView(lobbyPage.view);
 			}
 		);
 
 		lobbyPage = new LobbyComponent(
-			layout.setView.bind(landingPage.view)
+			layout.setView.bind(landingPage.view),
+			function() {
+				layout.setView(takeGamePics.view);
+				takeGamePics.start();
+			}
 		);
 
-		var waitingForPics = new WaitingForPicsComponent();
-		var takeGamePics = new TakeGamePicsComponent();
+		waitingForPics = new WaitingForPicsComponent();
+		takeGamePics = new TakeGamePicsComponent();
 
-		layout.setView(takeGamePics.view);
-		takeGamePics.start();
+
+		layout.setView(landingPage.view);
 
 		//Timer.delay(function() { appModel.setState(ApplicationState.TakeUserPicture); }, 2000);
 	}
