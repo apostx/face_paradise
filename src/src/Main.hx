@@ -4,6 +4,8 @@ import fp.ApplicationModel;
 import fp.Layout;
 import fp.component.landingpage.LandingPageComponent;
 import fp.component.lobby.LobbyComponent;
+import fp.component.takegamepics.TakeGamePicsComponent;
+import fp.component.waitingforpics.WaitingForPicsComponent;
 import haxe.Timer;
 import js.Browser;
 
@@ -31,7 +33,11 @@ class Main
 			layout.setView.bind(landingPage.view)
 		);
 
-		layout.setView(landingPage.view);
+		var waitingForPics = new WaitingForPicsComponent();
+		var takeGamePics = new TakeGamePicsComponent();
+
+		layout.setView(takeGamePics.view);
+		takeGamePics.start();
 
 		//Timer.delay(function() { appModel.setState(ApplicationState.TakeUserPicture); }, 2000);
 	}

@@ -51,11 +51,12 @@ body {
 }
 
 .fp_button--exit_from_room {
-	position: absolute;
-	top: 20px;
-	right: 20px;
+	position: relative;
 	font-size: 50px;
+	width: 50%;
 	color: #ef5050;
+	margin-right: 0;
+	margin-left: auto;
 }
 
 .fp_button--exit_from_room:hover {
@@ -111,6 +112,7 @@ body {
 .fp_player_list {
 	display: flex;
 	justify-content: center;
+	flex-wrap: wrap;
 }
 
 .fp_player {
@@ -120,9 +122,88 @@ body {
 	overflow: hidden;
 	background-color: #CCC;
 	margin: 10px;
+	background-position: center;
+	background-size: cover;
 }
 
-.fp_avatar {
+.fp_waiting_for_pics_title {
+	font-size: 3.5em;
+	text-align: center;
+	margin-top: 30%;
+	color: #b38787;
+}
+
+.fp_take_pic__progress {
+	background-color: #000;
+	height: 5em;
+	color: #FFF;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+.fp_take_pic__progress_step {
+	width: 2.5em;
+	height: 2.5em;
+	background-color: #655b5b;
+	border-radius: 2.5em;
+	text-align: center;
+	line-height: 2.5em;
+	font-weight: bold;
+	font-size: 1.5em;
+	border-style: solid;
+	border-color: transparent;
+}
+
+.fp_take_pic__progress_step--inactive {
+	opacity: 0.4;
+}
+
+.fp_take_pic__progress_step--current {
+	border-color: #FFF;
+}
+
+.fp_take_pic__progress_done {
+	color: #5fde2c;
+	font-size: 1.5em;
+	line-height: 1.65em;
+}
+
+.fp_take_pic__image {
 	width: 100%;
 	height: 100%;
+	background-size: contain;
+	position: fixed;
+	overflow: hidden;
+	background-repeat: no-repeat;
+	background-position: center;
+	top: 1.5em;
+	z-index: -1;
+}
+
+.fp_take_pic__my_photo {
+
+}
+
+.fp_take_pic__footer {
+	background-color: #000;
+	height: 5em;
+	color: #FFF;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+
+.fp_take_pic__footer_progress {
+	background-color: #4ae682;
+	height: 100%;
+	width: 0%;
+	transition: width .2s linear;
+	opacity: 1;
+}
+
+.fp_take_pic__footer_progress--full {
+	transition: opacity .5s linear, width 0s linear .9s;
+	width: 0%;
+	opacity: 0;
 }
