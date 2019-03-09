@@ -11,7 +11,7 @@ import js.html.VideoElement;
 
 class TakeGamePicsModel implements Model
 {
-	@:constant private var timePerStep:UInt = 5000;
+	@:constant private var timePerStep:UInt = 3000;
 
 	@:external private var onPicsAreReady:Void->Void;
 
