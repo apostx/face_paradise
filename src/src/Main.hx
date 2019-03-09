@@ -36,11 +36,11 @@ class Main
 	{
 		WebSocketService.connect().handle(onConnect);
 	}
-	
+
 	function getMediaStream():Future<MediaStream>
 	{
 		var t = Future.trigger();
-		
+
 		var onComplete = function(mediaStream)
 		{
 			t.trigger(mediaStream);
@@ -52,16 +52,16 @@ class Main
 
 		return t.asFuture();
 	}
-	
+
 	function onConnect()
 	{
 		getMediaStream().handle(function(mediaStream)
         {
             var video:VideoElement = VideoStreamService.getVideoElement();
-			
+
             video.srcObject = mediaStream;
 			video.hidden = true;
-			
+
 			onStream();
         });
 	}
@@ -109,7 +109,6 @@ class Main
 					if (appModel.appType == ApplicationType.Server)
 					{
 						layout.setView(gameOnServer.view);
-						gameOnServer.start();
 					}
 					else
 					{
@@ -121,6 +120,7 @@ class Main
 		waitingForGameStart = new WaitingForGameStartComponent();
 
 		gameOnServer = new GameOnServerComponent(
+			WebSocketService.voteConfig,
 			function () {
 				layout.setView(gameEnd.view);
 				Timer.delay(function() {
@@ -130,10 +130,23 @@ class Main
 		);
 
 		gameOnClient = new GameOnClientComponent(
+			WebSocketService.voteConfig,
 			function(id) {
 				trace(id);
 			}
 		);
+
+		WebSocketService.nextVoteSignalTrigger.handle(function(d) {
+			trace(">>>>>",d);
+			if (appModel.appType == ApplicationType.Client)
+			{
+				gameOnClient.nextStep(d);
+			}
+			else
+			{
+				gameOnServer.nextStep(d);
+			}
+		});
 
 		gameEnd = new GameEndComponent(
 		);

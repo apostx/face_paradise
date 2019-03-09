@@ -13,6 +13,7 @@ class WebSocketService
 
 	static var showStartSignalTrigger:SignalTrigger<Noise> = new SignalTrigger<Noise>();
 	static public var gameConfigSignalTrigger:SignalTrigger<Array<String>> = new SignalTrigger<Array<String>>();
+	static public var nextVoteSignalTrigger:SignalTrigger<Array<Dynamic>> = new SignalTrigger<Array<Dynamic>>();
 	static public var showStartSignal:Signal<Noise> = showStartSignalTrigger.asSignal();
 
 	static public var mainState:State<String> = new State<String>(null);
@@ -20,6 +21,7 @@ class WebSocketService
 	static public var playerCount:State<Int> = new State<Int>(0);
 	static public var maxVoteRound:State<Int> = new State<Int>(0);
 	static public var gameImageList:State<Array<Dynamic>> = new State<Array<Dynamic>>(null);
+	static public var voteConfig:State<Array<Dynamic>> = new State<Array<Dynamic>>(null);
 	static public var userList:State<Array<String>> = new State<Array<String>>(null);
 	static public var userDataList:Dynamic = null;
 
@@ -103,6 +105,9 @@ class WebSocketService
 			case "gameConfig":
 				gameConfigSignalTrigger.trigger(message.data);
 
+			case "nextVote":
+				nextVoteSignalTrigger.trigger(message.data);
+
 			default:
 		}
 	}
@@ -114,6 +119,7 @@ class WebSocketService
 		updateState(state.playerCount, playerCount);
 		updateState(state.maxVoteRound, maxVoteRound);
 		updateState(state.gameImageList, gameImageList);
+		updateState(state.voteConfig, voteConfig);
 
 		faceImageList = updateValue(state.faceImageList, faceImageList);
 

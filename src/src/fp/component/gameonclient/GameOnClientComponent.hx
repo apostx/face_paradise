@@ -1,7 +1,10 @@
 package fp.component.gameonclient;
 
+import tink.state.Observable;
+
 @:tink class GameOnClientComponent
 {
+	var voteConfig:Observable<Array<Dynamic>> = _;
 	var openVoteRequest:String->Void = _;
 
 	public var view:GameOnClientView;
@@ -22,4 +25,6 @@ package fp.component.gameonclient;
 			openVoteRequest: openVoteRequest
 		});
 	}
+
+	public function nextStep(data:Dynamic) {  }
 }
