@@ -7,6 +7,7 @@ import coconut.ui.View;
 class LobbyView extends View
 {
 	@:attribute var closeLobbyRequest:Void->Void;
+	@:attribute var gameStartRequest:Void->Void;
 	@:attribute var roomId:String;
 	//@:skipCheck @:attribute var playerList:Dynamic;
 
@@ -23,7 +24,7 @@ class LobbyView extends View
 					<div class="fp_player" style="background-image: ${getImage()}"></div>
 				</div>
 			</div>
-			<div class="fp_button fp_button--start_game">Start Game</div>
+			<div class="fp_button fp_button--start_game" onclick=$gameStartRequest>Start Game</div>
 		</div>
 	';
 

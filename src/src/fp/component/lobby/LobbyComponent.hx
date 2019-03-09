@@ -3,6 +3,7 @@ package fp.component.lobby;
 @:tink class LobbyComponent
 {
 	var closeLobbyRequest:Void->Void = _;
+	var gameStartRequest:Void->Void = _;
 
 	public var view:LobbyView;
 	public var model:LobbyModel;
@@ -19,7 +20,8 @@ package fp.component.lobby;
 		view = new LobbyView({
 			//playerList: model.playerList,
 			roomId: model.roomId,
-			closeLobbyRequest: closeLobbyRequest
+			closeLobbyRequest: closeLobbyRequest,
+			gameStartRequest: gameStartRequest
 		});
 	}
 
