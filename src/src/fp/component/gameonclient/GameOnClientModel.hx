@@ -11,6 +11,6 @@ class GameOnClientModel implements Model
 }
 
 typedef Test = {
-	var id(default, never):String;
+	@:optional var id(default, never):String;
 	var avatar(default, never):String;
 }

@@ -21,8 +21,8 @@ class WebSocketService
 	static public var userList:State<Array<String>> = new State<Array<String>>(null);
 	static public var userDataList:Dynamic = null;
 
-	static public var gameImageList:Array<String> = new Array<String>();
-	static public var faceImageList:Array<String> = new Array<String>();
+	static public var gameImageList:Array<Dynamic> = new Array<Dynamic>();
+	static public var faceImageList:Array<Dynamic> = new Array<Dynamic>();
 
 	static public function connect():Future<Noise>
 	{
@@ -97,10 +97,10 @@ class WebSocketService
 
 		gameImageList = updateValue(state.gameImageList, gameImageList);
 		faceImageList = updateValue(state.faceImageList, faceImageList);
-		
-		if (state.playerList != null)
+
+		if (state.players != null)
 		{
-			userDataList = state.playerList;
+			userDataList = state.players;
 			userList.set(Reflect.fields(userDataList));
 		}
 	}

@@ -61,7 +61,11 @@ class Main
 		);
 
 		lobbyPage = new LobbyComponent(
-			layout.setView.bind(landingPage.view),
+			appModel.observables.appType,
+			function(){
+				WebSocketService.room.leave();
+				layout.setView(landingPage.view);
+			},
 			function() {
 				layout.setView(takeGamePics.view);
 				takeGamePics.start();

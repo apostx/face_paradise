@@ -9,7 +9,7 @@ body {
 	text-align: center;
 	position: relative;
 	top: 100px;
-	opacity: .1;
+	opacity: .3;
 }
 
 .fp_logo__img {
@@ -75,13 +75,13 @@ body {
 	position: relative;
 	font-size: 50px;
 	width: 50px;
-	color: #ef5050;
+	color: #e61c1c;
 	margin-right: 0;
 	margin-left: auto;
 }
 
 .fp_button--exit_from_room:hover {
-	color: #ea4040;
+	color: #bf0000;
 }
 
 .fp_title {
@@ -360,4 +360,31 @@ body {
 
 .fp_player--no_user_action {
 	pointer-events: none;
+}
+
+.fp_footer_a {
+	position: absolute;
+	bottom: 0;
+	overflow: hidden;
+	width: 100%;
+	opacity: 0.2;
+	z-index: -1;
+}
+
+.fp_footer_b {
+	position: absolute;
+	bottom: 0;
+	left: -10px;
+	overflow: hidden;
+	opacity: 0.2;
+	z-index: -1;
+}
+
+.fp_footer_c {
+	position: absolute;
+	bottom: 0;
+	overflow: hidden;
+	right: 0;
+	opacity: 0.2;
+	z-index: -1;
 }

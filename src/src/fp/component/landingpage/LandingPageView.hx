@@ -14,7 +14,7 @@ class LandingPageView extends View
 	function render() '
 		<div>
 			<div class="fp_room_list_title">
-				<div class="fp_title"><i class="fas fa-gamepad"></i> Choose a game room</div>
+				<div class="fp_title"><i class="fas fa-crosshairs"></i> Choose a game room</div>
 				<div class="fp_button fp_button--refresh_room_list" onclick=$updateRoomListRequest><i class="fas fa-sync-alt"></i></div>
 			</div>
 			<div class="fp_room_list_container">

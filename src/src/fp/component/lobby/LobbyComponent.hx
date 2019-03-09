@@ -1,8 +1,12 @@
 package fp.component.lobby;
+import fp.ApplicationModel.ApplicationType;
+import fp.component.gameonclient.GameOnClientModel.Test;
 import fp.service.WebSocketService;
+import tink.state.Observable;
 
 @:tink class LobbyComponent
 {
+	var appType:Observable<ApplicationType> = _;
 	var closeLobbyRequest:Void->Void = _;
 	var gameStartRequest:Void->Void = _;
 
@@ -13,9 +17,25 @@ import fp.service.WebSocketService;
 	{
 		model = new LobbyModel();
 
-		//WebSocketService.getPlayerList().handle(model.setList);
+		WebSocketService.userList.observe().bind(function(list:Array<String>) {
+			if (list == null) return;
 
-		view = new LobbyView({
+			var newList:Array<Test> = [];
+			for (user in list)
+			{
+				var user = Reflect.getProperty(WebSocketService.userDataList, user);
+				var avatarId = user.avatarId;
+				var avatar = Reflect.getProperty(WebSocketService.faceImageList, avatarId);
+
+				newList.push({avatar: avatar});
+			}
+
+			model.setList(newList);
+		});
+
+		view = new LobbyView(
+		{
+			appType: appType,
 			playerList: model.playerList,
 			roomId: model.roomId,
 			closeLobbyRequest: closeLobbyRequest,
