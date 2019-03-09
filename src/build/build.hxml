@@ -15,6 +15,7 @@
 -lib tink_pure:0.4.0
 -lib tink_slice:0.1.0
 -lib tink_syntaxhub:0.4.3
+-lib colyseus
 
 -js bin/FaceParadise.js
 -main Main.hx
