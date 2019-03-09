@@ -7,6 +7,7 @@ import fp.component.landingpage.LandingPageComponent;
 import fp.component.lobby.LobbyComponent;
 import fp.component.takegamepics.TakeGamePicsComponent;
 import fp.component.waitingforpics.WaitingForPicsComponent;
+import fp.service.WebSocketService;
 import haxe.Timer;
 import js.Browser;
 
@@ -20,6 +21,11 @@ class Main
 	var takeGamePics:TakeGamePicsComponent;
 
 	public function new()
+	{
+		WebSocketService.connect().handle(onConnect);
+	}
+	
+	function onConnect()
 	{
 		var appModel = new ApplicationModel();
 		var layout = new Layout({});
