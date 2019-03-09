@@ -27,7 +27,7 @@ class GameOnServerModel implements Model
 			checkTime,
 			100
 		);
-trace("^^^^^^^^^^^^^^^", data.gameImageId);
+
 		return {
 			gameImageId: data.gameImageId,
 			stepStartTime: Date.now().getTime(),

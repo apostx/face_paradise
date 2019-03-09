@@ -154,7 +154,6 @@ class Main
 		);
 
 		WebSocketService.nextVoteSignalTrigger.handle(function(d) {
-			trace("LLLLLLLLLLLLLLLLLL", d);
 			if (appModel.appType == ApplicationType.Client)
 			{
 				gameOnClient.nextStep(d);

@@ -37,10 +37,11 @@ import tink.state.Observable;
 		var playerList:Array<String> = [];
 		if (voteConfig.value != null && Reflect.hasField(voteConfig.value, model.observables.gameImageId.value))
 		{
+			var temp:Array<String> = Reflect.getProperty(voteConfig.value, model.observables.gameImageId.value);
+			for (e in temp) playerList.push(Reflect.getProperty(WebSocketService.faceImageList, e));
+
 			model.setPlayerList(
-				List.fromArray(
-					Reflect.getProperty(WebSocketService.faceImageList, Reflect.getProperty(voteConfig.value, model.observables.gameImageId.value))
-				)
+				List.fromArray(playerList)
 			);
 		}
 	}

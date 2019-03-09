@@ -46,8 +46,8 @@ html,body{height:100%;background-color:#7E6991;margin:0;padding:0;font-family:Ar
 .fp_game__footer_progress--in_progress{transition:opacity .5s linear 3s,width 3s linear;width:100%;opacity:0;}
 .fp_game__footer_progress--empty{transition:opacity 0s linear,width 0s linear;width:0%;opacity:1;}
 .fp_game__player_list{height:5em;color:#FFF;justify-content:space-evenly;align-items:center;margin-top:10px;display:flex;flex-wrap:wrap;}
-.fp_game__player_photo{width:10em;height:10em;border-radius:10px;position:relative;background-color:#CCC;margin-top:20px;}
-.fp_game__player_name{position:absolute;color:#555;font-size:20px;font-weight:bold;top:10px;left:10px;}
+.fp_game__player_photo{width:10em;height:10em;border-radius:10px;position:relative;margin-top:20px;}
+.fp_game__player_name{position:absolute;color:#FFEB3B;font-size:30px;font-weight:bold;top:70%;left:80%;background-color:#000;border-radius:38px;padding:10px;}
 .fp_game_area{}
 .fp_player_list_container{width:80%;margin:auto;position:relative;margin-top:10%;}
 .fp_player_list_container--voted{pointer-events:none;}

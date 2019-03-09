@@ -341,17 +341,19 @@ html, body {
 	height: 10em;
 	border-radius: 10px;
 	position: relative;
-	background-color: #CCC;
 	margin-top: 20px;
 }
 
 .fp_game__player_name {
 	position: absolute;
-	color: #555;
-	font-size: 20px;
+	color: #FFEB3B;
+	font-size: 30px;
 	font-weight: bold;
-	top: 10px;
-	left: 10px;
+	top: 70%;
+	left: 80%;
+	background-color: #000;
+	border-radius: 38px;
+	padding: 10px;
 }
 
 .fp_game_area {
