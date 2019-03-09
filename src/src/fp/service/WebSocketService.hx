@@ -18,6 +18,8 @@ class WebSocketService
 	static public var voteRound:State<Int> = new State<Int>(0);
 	static public var playerCount:State<Int> = new State<Int>(0);
 	static public var maxVoteRound:State<Int> = new State<Int>(0);
+	static public var userList:State<Array<String>> = new State<Array<String>>(null);
+	static public var userDataList:Dynamic = null;
 
 	static public var gameImageList:Array<String> = new Array<String>();
 	static public var faceImageList:Array<String> = new Array<String>();
@@ -95,6 +97,12 @@ class WebSocketService
 
 		gameImageList = updateValue(state.gameImageList, gameImageList);
 		faceImageList = updateValue(state.faceImageList, faceImageList);
+		
+		if (state.playerList != null)
+		{
+			userDataList = state.playerList;
+			userList.set(Reflect.fields(userDataList));
+		}
 	}
 
 	static function updateState<T>(value:T, state:State<T>):Void
