@@ -3,6 +3,7 @@ package;
 import fp.ApplicationModel;
 import fp.Layout;
 import fp.component.capture.CapturePageComponent;
+import fp.component.gameend.GameEndComponent;
 import fp.component.gameonclient.GameOnClientComponent;
 import fp.component.gameonserver.GameOnServerComponent;
 import fp.component.landingpage.LandingPageComponent;
@@ -24,6 +25,7 @@ class Main
 	var waitingForGameStart:WaitingForGameStartComponent;
 	var gameOnServer:GameOnServerComponent;
 	var gameOnClient:GameOnClientComponent;
+	var gameEnd:GameEndComponent;
 
 	public function new()
 	{
@@ -66,7 +68,14 @@ class Main
 		);
 		waitingForGameStart = new WaitingForGameStartComponent();
 
-		gameOnServer = new GameOnServerComponent();
+		gameOnServer = new GameOnServerComponent(
+			function () {
+				layout.setView(gameEnd.view);
+				Timer.delay(function() {
+					layout.setView(landingPage.view);
+				}, 5000);
+			}
+		);
 
 		gameOnClient = new GameOnClientComponent(
 			function(id) {
@@ -74,12 +83,10 @@ class Main
 			}
 		);
 
+		gameEnd = new GameEndComponent(
+		);
 
-		layout.setView(gameOnClient.view);
 
-		//layout.setView(gameOnServer.view);
-		//gameOnServer.start();
-
-		//Timer.delay(function() { appModel.setState(ApplicationState.TakeUserPicture); }, 2000);
+		layout.setView(landingPage.view);
 	}
 }

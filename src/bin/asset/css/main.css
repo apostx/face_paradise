@@ -325,3 +325,7 @@ body {
 .fp_player_list_container--voted {
 	pointer-events: none;
 }
+
+.fp_player--no_user_action {
+	pointer-events: none;
+}

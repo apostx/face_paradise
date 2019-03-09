@@ -7,6 +7,8 @@ class GameOnServerModel implements Model
 {
 	@:constant private var timePerStep:UInt = 3000;
 
+	@:external private var onGameEnd:Void->Void;
+
 	@:observable var currentStep:UInt = 0;
 	@:observable var stepStartTime:Float = 0;
 	@:observable var remainingTimePercent:Float = 0;
@@ -38,10 +40,10 @@ class GameOnServerModel implements Model
 			}
 			else
 			{
-				/*Timer.delay(
-					//GAME END
+				Timer.delay(
+					onGameEnd,
 					1000
-				);*/
+				);
 				return { currentStep: currentStep + 1, remainingTimePercent: 100 };
 			}
 		}
