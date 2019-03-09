@@ -21,7 +21,7 @@ import tink.state.Observable;
 		view = new GameOnServerView({
 			currentStep: model.currentStep,
 			remainingTimePercent: model.remainingTimePercent,
-			currentImage: model.currentImage,
+			gameImageId: model.gameImageId,
 			playerList: model.playerList
 		});
 

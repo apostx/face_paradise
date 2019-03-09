@@ -2,13 +2,14 @@ package fp.component.gameonserver;
 
 import coconut.data.List;
 import coconut.ui.View;
+import fp.service.WebSocketService;
 
 class GameOnServerView extends View
 {
 	var names:Array<String> = ["A", "B", "C", "D", "E"];
 
 	@:attribute var currentStep:UInt;
-	@:attribute var currentImage:String;
+	@:attribute var gameImageId:String;
 	@:attribute var remainingTimePercent:Float;
 	@:skipCheck @:attribute var playerList:List<String>;
 
@@ -37,7 +38,7 @@ class GameOnServerView extends View
 						</div>
 					</for>
 				</div>
-				<img class="fp_game__image" src=$currentImage />
+				<img class="fp_game__image" src=${Reflect.getProperty(WebSocketService.faceImageList, gameImageId)} />
 			</div>
 			<div class="fp_game__footer">
 				<div class={"fp_game__footer_progress" + (remainingTimePercent > 0 ? " fp_game__footer_progress--in_progress" : " fp_game__footer_progress--empty")}>

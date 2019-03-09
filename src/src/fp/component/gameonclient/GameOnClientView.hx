@@ -7,8 +7,9 @@ import fp.component.gameonclient.GameOnClientModel.Test;
 class GameOnClientView extends View
 {
 	@:attribute var playerList:List<String>;
+	@:attribute var gameImageId:String;
 
-	@:attribute var openVoteRequest:String->Void;
+	@:attribute var openVoteRequest:String->String->Void;
 	@:state var isAlreadyVoted:Bool = false;
 
 	function render() '
@@ -31,11 +32,13 @@ class GameOnClientView extends View
 	function onClick(id)
 	{
 		isAlreadyVoted = true;
-		openVoteRequest(id);
+		openVoteRequest(gameImageId, id);
 	};
 
 	function getImage(index)
 	{
 		return "url(" + playerList.toArray()[index] + ")";
 	}
+
+	public function reset() isAlreadyVoted = false;
 }

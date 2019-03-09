@@ -7,9 +7,10 @@ class GameOnClientModel implements Model
 {
 	@:observable var playerList:List<String> = [];
 	@:observable var gameImageId:String = "";
+	@:observable var isLast:Bool = false;
 
-	@:transition function nextStep(data)
-	{return { gameImageId: data.gameImageId };
+	@:transition function nextStep(data) {
+		return { gameImageId: data.gameImageId, isLast: data.isLast };
 	}
 	@:transition function setPlayerList(data) return { playerList: data };
 }

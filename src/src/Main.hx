@@ -2,6 +2,7 @@ package;
 
 import fp.ApplicationModel;
 import fp.Layout;
+import fp.VoteHelper;
 import fp.component.capture.CapturePageComponent;
 import fp.component.gameend.GameEndComponent;
 import fp.component.gameonclient.GameOnClientComponent;
@@ -148,8 +149,9 @@ class Main
 
 		gameOnClient = new GameOnClientComponent(
 			WebSocketService.voteConfig,
-			function(id) {
-				trace(id);
+			function(gameImageId, faceImageId, isLast) {
+				VoteHelper.vote(gameImageId, faceImageId);
+				if (isLast) VoteHelper.sendVotes();
 			}
 		);
 

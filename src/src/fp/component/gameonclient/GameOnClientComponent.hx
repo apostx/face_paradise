@@ -7,7 +7,7 @@ import tink.state.Observable;
 @:tink class GameOnClientComponent
 {
 	var voteConfig:Observable<Dynamic> = _;
-	var openVoteRequest:String->Void = _;
+	var openVoteRequest:String->String->Bool->Void = _;
 
 	public var model:GameOnClientModel;
 	public var view:GameOnClientView;
@@ -18,7 +18,8 @@ import tink.state.Observable;
 
 		view = new GameOnClientView({
 			playerList: model.playerList,
-			openVoteRequest: openVoteRequest
+			gameImageId: model.gameImageId,
+			openVoteRequest: function(gameImageId, faceImageId) { openVoteRequest(gameImageId, faceImageId, model.isLast); }
 		});
 
 		voteConfig.bind(function(v){
@@ -30,6 +31,7 @@ import tink.state.Observable;
 	{
 		model.nextStep(data);
 		refreshPlayerList();
+		view.reset();
 	}
 
 	function refreshPlayerList()

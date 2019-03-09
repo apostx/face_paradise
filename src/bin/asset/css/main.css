@@ -365,10 +365,14 @@ html, body {
 	margin: auto;
 	position: relative;
 	margin-top: 10%;
+	border-width: 2px;
+	border-style: solid;
+	border-color: transparent;
 }
 
 .fp_player_list_container--voted {
 	pointer-events: none;
+	border-color: #FFFF00;
 }
 
 .fp_player--no_user_action {

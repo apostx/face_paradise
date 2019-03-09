@@ -17,7 +17,6 @@ class GameOnServerModel implements Model
 	@:observable var currentStep:Int = -1;
 	@:observable var stepStartTime:Float = 0;
 	@:observable var remainingTimePercent:Float = 0;
-	@:observable var currentImage:String = "";
 
 	@:transition function setPlayerList(data) return { playerList: data };
 

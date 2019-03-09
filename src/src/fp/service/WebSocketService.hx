@@ -176,11 +176,11 @@ class WebSocketService
 		});
 	}
 
-	/*static public function voteUpload(image:String):Void
+	static public function voteUpload(data:Dynamic):Void
 	{
 		room.send({
-			event: "avatarUpload",
-			data: uploadAvatar
+			event: "voteUpload",
+			data: data
 		});
-	}*/
+	}
 }
