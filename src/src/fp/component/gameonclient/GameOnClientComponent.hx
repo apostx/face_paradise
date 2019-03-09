@@ -4,21 +4,17 @@ import tink.state.Observable;
 
 @:tink class GameOnClientComponent
 {
-	var voteConfig:Observable<Array<Dynamic>> = _;
+	var voteConfig:Observable<Dynamic> = _;
 	var openVoteRequest:String->Void = _;
 
+	public var model:GameOnClientModel;
 	public var view:GameOnClientView;
 
 	public function new()
 	{
-		var model = new GameOnClientModel();
-		model.setList([
-			{ id: "1", avatar:"Room123"},
-			{ id: "2", avatar:"Room456"},
-			{ id: "3", avatar:"Room789"},
-			{ id: "4", avatar:"RoomABC"},
-			{ id: "5", avatar:"RoomXXX"}
-		]);
+		model = new GameOnClientModel({
+			voteConfig: voteConfig
+		});
 
 		view = new GameOnClientView({
 			playerList: model.playerList,
@@ -26,5 +22,5 @@ import tink.state.Observable;
 		});
 	}
 
-	public function nextStep(data:Dynamic) {  }
+	public function nextStep(data:Dynamic) { model.nextStep(data); }
 }

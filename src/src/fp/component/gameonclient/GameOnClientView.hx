@@ -5,7 +5,7 @@ import fp.component.gameonclient.GameOnClientModel.Test;
 
 class GameOnClientView extends View
 {
-	@:skipCheck @:attribute var playerList:Array<Test>;
+	@:skipCheck @:attribute var playerList:Array<String>;
 
 	@:attribute var openVoteRequest:String->Void;
 	@:state var isAlreadyVoted:Bool = false;
@@ -17,9 +17,9 @@ class GameOnClientView extends View
 			</div>
 			<ul class="fp_room_list">
 				<if {playerList != null}>
-					<for {player in playerList}>
-						<li class="fp_room_entry" onclick={onClick(player.id)}>
-							{player.avatar}
+					<for {i in 0...playerList.length}>
+						<li class="fp_room_entry" onclick={onClick(playerList[i])}>
+							<div class="fp_player" style="background-image: ${getImage(i)}"></div>
 						</li>
 					</for>
 				</if>
@@ -32,4 +32,9 @@ class GameOnClientView extends View
 		isAlreadyVoted = true;
 		openVoteRequest(id);
 	};
+
+	function getImage(index)
+	{
+		return "url(" + playerList[index] + ")";
+	}
 }

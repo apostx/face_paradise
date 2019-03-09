@@ -3,7 +3,7 @@ import tink.state.Observable;
 
 @:tink class GameOnServerComponent
 {
-	var voteConfig:Observable<Array<Dynamic>> = _;
+	var voteConfig:Observable<Dynamic> = _;
 	var onGameEnd:Void->Void = _;
 
 	public var model:GameOnServerModel;
@@ -20,7 +20,7 @@ import tink.state.Observable;
 			currentStep: model.currentStep,
 			remainingTimePercent: model.remainingTimePercent,
 			currentImage: model.currentImage,
-			currentRoundInfo: model.currentRoundInfo
+			playerList: model.playerList
 		});
 	}
 

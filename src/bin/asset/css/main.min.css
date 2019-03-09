@@ -23,7 +23,7 @@ html,body{height:100%;background-color:#7E6991;margin:0;padding:0;font-family:Ar
 .fp_player_list_title{font-size:2em;text-align:center;}
 .fp_player_list{display:flex;justify-content:center;flex-wrap:wrap;}
 .fp_player{border-radius:75px;width:150px;height:150px;overflow:hidden;background-color:#CCC;margin:10px;background-position:center;background-size:cover;}
-.fp_waiting_for_pics_title{font-size:3.5em;text-align:center;margin-top:30%;color:#b38787;}
+.fp_waiting_for_pics_title{font-size:3.5em;text-align:center;padding-top:30%;color:#b38787;}
 .fp_take_pic__progress{background-color:#000;height:5em;color:#FFF;display:flex;justify-content:space-evenly;align-items:center;}
 .fp_take_pic__progress_step{width:2.5em;height:2.5em;background-color:#655b5b;border-radius:2.5em;text-align:center;line-height:2.5em;font-weight:bold;font-size:1.5em;border-style:solid;border-color:transparent;}
 .fp_take_pic__progress_step--inactive{opacity:0.4;}
