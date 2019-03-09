@@ -32,7 +32,7 @@ class Main
 	{
 		WebSocketService.connect().handle(onConnect);
 	}
-	
+
 	function onConnect()
 	{
 		var appModel = new ApplicationModel();
@@ -45,7 +45,8 @@ class Main
 				lobbyPage.setRoomId(roomId);
 				layout.setView(capturePage.view);
 				capturePage.capture();
-			}
+			},
+			appModel.setType.bind(ApplicationType.Server)
 		);
 
 		capturePage = new CapturePageComponent(
