@@ -7,9 +7,7 @@ class Layout extends View
 {
 	@:state var currentView:View = null;
 
-	function render() '
-		<div>{currentView != null ? currentView : ""}</div>
-	';
+	function render() '<div>{currentView != null ? currentView : ""}</div>';
 
 	public function setView(r) currentView = r;
 }
