@@ -117,6 +117,22 @@ class Main
 				}, 1000);
 			}
 		);
+
+		WebSocketService.mainState.observe().bind(function(v) {
+			switch(v)
+			{
+				case "game" if (appModel.appType == ApplicationType.Server):
+					layout.setView(waitingForGameStart.view);
+
+				case "vote" if (appModel.appType == ApplicationType.Server):
+					layout.setView(gameOnServer.view);
+
+				case "vote" if (appModel.appType == ApplicationType.Client):
+					layout.setView(gameOnClient.view);
+
+				case _: trace("STATE:", v);
+			}
+		});
 		waitingForGameStart = new WaitingForGameStartComponent();
 
 		gameOnServer = new GameOnServerComponent(
