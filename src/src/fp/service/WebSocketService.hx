@@ -47,11 +47,19 @@ class WebSocketService
 		return t;
 	}
 
-	static public function createRoom():Void
+	static public function createRoom():Future<String>
 	{
+		var t = Future.trigger();
+		
 		room = client.join("", ["create" => "true"]);
 		room.onMessage = onMessage;
 		room.onStateChange = onStateChange;
+		
+		room.onJoin = function () {
+			t.trigger(room.id);
+		};
+		
+		return t;
 	}
 
 	static public function joinRoom(roomId:String):Future<String>
