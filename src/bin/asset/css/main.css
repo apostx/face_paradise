@@ -5,6 +5,10 @@ body {
 	font-family: Arial;
 }
 
+.fp_is_hidden {
+	visibility: hidden;
+}
+
 .fp_logo {
 	text-align: center;
 	position: relative;
@@ -235,7 +239,7 @@ body {
 }
 
 .fp_take_pic__footer_progress--in_progress {
-	transition: opacity .5s linear 3s, width 3s linear;
+	transition: opacity .5s linear 5s, width 5s linear;
 	width: 100%;
 	opacity: 0;
 }
@@ -304,7 +308,7 @@ body {
 }
 
 .fp_game__footer_progress--in_progress {
-	transition: opacity .5s linear 3s, width 3s linear;
+	transition: opacity .5s linear 5s, width 5s linear;
 	width: 100%;
 	opacity: 0;
 }
@@ -368,7 +372,7 @@ body {
 	overflow: hidden;
 	width: 100%;
 	opacity: 0.2;
-	z-index: -1;
+	z-index: -9;
 }
 
 .fp_footer_b {
@@ -377,7 +381,7 @@ body {
 	left: -10px;
 	overflow: hidden;
 	opacity: 0.2;
-	z-index: -1;
+	z-index: -9;
 }
 
 .fp_footer_c {
@@ -386,5 +390,5 @@ body {
 	overflow: hidden;
 	right: 0;
 	opacity: 0.2;
-	z-index: -1;
+	z-index: -9;
 }

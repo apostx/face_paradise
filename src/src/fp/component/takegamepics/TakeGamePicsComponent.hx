@@ -1,4 +1,5 @@
 package fp.component.takegamepics;
+import fp.service.WebSocketService;
 
 @:tink class TakeGamePicsComponent
 {
@@ -16,9 +17,11 @@ package fp.component.takegamepics;
 		view = new TakeGamePicsView({
 			currentStep: model.currentStep,
 			remainingTimePercent: model.remainingTimePercent,
-			currentImage: model.currentImage
+			currentImage: model.currentImage,
+			isWaitingForPreloading: model.isWaitingForPreloading,
+			pictureList: model.pictureList
 		});
 	}
 
-	public function start() { model.start(); }
+	public function start(data:Array<String>) { model.startRequest(data); }
 }

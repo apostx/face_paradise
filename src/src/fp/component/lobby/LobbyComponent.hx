@@ -8,7 +8,6 @@ import tink.state.Observable;
 {
 	var appType:Observable<ApplicationType> = _;
 	var closeLobbyRequest:Void->Void = _;
-	var gameStartRequest:Void->Void = _;
 
 	public var view:LobbyView;
 	public var model:LobbyModel;
@@ -39,7 +38,7 @@ import tink.state.Observable;
 			playerList: model.playerList,
 			roomId: model.roomId,
 			closeLobbyRequest: closeLobbyRequest,
-			gameStartRequest: gameStartRequest
+			gameStartRequest: WebSocketService.startGame
 		});
 	}
 

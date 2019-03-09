@@ -12,16 +12,17 @@ class WebSocketService
 	static public var room:Room;
 
 	static var showStartSignalTrigger:SignalTrigger<Noise> = new SignalTrigger<Noise>();
+	static public var gameConfigSignalTrigger:SignalTrigger<Array<String>> = new SignalTrigger<Array<String>>();
 	static public var showStartSignal:Signal<Noise> = showStartSignalTrigger.asSignal();
 
 	static public var mainState:State<String> = new State<String>(null);
 	static public var voteRound:State<Int> = new State<Int>(0);
 	static public var playerCount:State<Int> = new State<Int>(0);
 	static public var maxVoteRound:State<Int> = new State<Int>(0);
+	static public var gameImageList:State<Array<Dynamic>> = new State<Array<Dynamic>>(null);
 	static public var userList:State<Array<String>> = new State<Array<String>>(null);
 	static public var userDataList:Dynamic = null;
 
-	static public var gameImageList:Array<Dynamic> = new Array<Dynamic>();
 	static public var faceImageList:Array<Dynamic> = new Array<Dynamic>();
 
 	static public function connect():Future<Noise>
@@ -84,6 +85,10 @@ class WebSocketService
 		{
 			case "displayStart":
 				showStartSignalTrigger.trigger(Noise);
+
+			case "gameConfig":
+				gameConfigSignalTrigger.trigger(message.data);
+
 			default:
 		}
 	}
@@ -94,8 +99,8 @@ class WebSocketService
 		updateState(state.voteRound, voteRound);
 		updateState(state.playerCount, playerCount);
 		updateState(state.maxVoteRound, maxVoteRound);
+		updateState(state.gameImageList, gameImageList);
 
-		gameImageList = updateValue(state.gameImageList, gameImageList);
 		faceImageList = updateValue(state.faceImageList, faceImageList);
 
 		if (state.players != null)
@@ -138,6 +143,14 @@ class WebSocketService
 		room.send({
 			event: "faceImagesUpload",
 			data: list
+		});
+	}
+
+	// #4
+	static public function startGame():Void
+	{
+		room.send({
+			event: "start"
 		});
 	}
 

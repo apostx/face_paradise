@@ -65,10 +65,6 @@ class Main
 			function(){
 				WebSocketService.room.leave();
 				layout.setView(landingPage.view);
-			},
-			function() {
-				layout.setView(takeGamePics.view);
-				takeGamePics.start();
 			}
 		);
 
@@ -102,6 +98,21 @@ class Main
 		gameEnd = new GameEndComponent(
 		);
 
+		WebSocketService.gameConfigSignalTrigger.handle(function(d) {
+			if (WebSocketService.gameImageList != null && WebSocketService.gameImageList.value.length > 0)
+			{
+				layout.setView(takeGamePics.view);
+				takeGamePics.start(d);
+			}
+			else
+			{
+				WebSocketService.gameImageList.observe().nextTime({ butNotNow: false }, function (h) return true).handle(function()
+				{
+					layout.setView(takeGamePics.view);
+					takeGamePics.start(d);
+				});
+			}
+		});
 
 		layout.setView(landingPage.view);
 	}
