@@ -9,7 +9,7 @@ class GameOnServerView extends View
 	@:attribute var currentStep:UInt;
 	@:attribute var currentImage:String;
 	@:attribute var remainingTimePercent:Float;
-	@:skipCheck @:attribute var currentRoundInfo:Array<String>;
+	@:skipCheck @:attribute var playerList:Array<String>;
 
 	function render() '
 		<div>
@@ -29,9 +29,10 @@ class GameOnServerView extends View
 			</div>
 			<div class="fp_game_area">
 				<div class="fp_game__player_list">
-					<for {name in names}>
+					<for {i in 0...playerList.length}>
 						<div class="fp_game__player_photo">
-							<div class="fp_game__player_name">$name</div>
+							<div class="fp_player" style="background-image: ${getImage(i)}"></div>
+						<div class="fp_game__player_name">${names[i]}</div>
 						</div>
 					</for>
 				</div>
@@ -43,4 +44,9 @@ class GameOnServerView extends View
 			</div>
 		</div>
 	';
+
+	function getImage(index)
+	{
+		return "url(" + playerList[index] + ")";
+	}
 }

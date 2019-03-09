@@ -8,16 +8,26 @@ class GameOnServerModel implements Model
 {
 	@:constant private var timePerStep:UInt = 3000;
 
-	@:skipCheck @:external private var voteConfig:Array<Dynamic>;
+	@:skipCheck @:external private var voteConfig:Dynamic;
+
+	@:skipCheck @:computed var playerList:Array<String> = calculatePlayers();
+	function calculatePlayers()
+	{
+		if (voteConfig != null && Reflect.hasField(voteConfig, gameImageId)) return Reflect.getProperty(voteConfig, gameImageId);
+
+		return null;
+	}
+
 	@:external private var onGameEnd:Void->Void;
+
+	@:observable private var gameImageId:String = "";
 
 	@:observable var currentStep:Int = -1;
 	@:observable var stepStartTime:Float = 0;
 	@:observable var remainingTimePercent:Float = 0;
 	@:observable var currentImage:String = "";
-	@:skipCheck @:observable var currentRoundInfo:Array<String> = [];
 
-	@:transition public function nextStep(data:Dynamic)
+	@:transition function nextStep(data)
 	{
 		Timer.delay(
 			checkTime,
@@ -25,10 +35,10 @@ class GameOnServerModel implements Model
 		);
 
 		return {
+			gameImageId: data.gameImageId,
 			stepStartTime: Date.now().getTime(),
 			currentStep: currentStep + 1,
-			remainingTimePercent: 0,
-			currentRoundInfo: Reflect.getProperty(voteConfig[currentStep].value, data.gameImageId)
+			remainingTimePercent: 0
 		};
 	}
 

@@ -137,7 +137,6 @@ class Main
 		);
 
 		WebSocketService.nextVoteSignalTrigger.handle(function(d) {
-			trace(">>>>>",d);
 			if (appModel.appType == ApplicationType.Client)
 			{
 				gameOnClient.nextStep(d);

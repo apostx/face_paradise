@@ -23,10 +23,13 @@ import tink.state.Observable;
 			for (user in list)
 			{
 				var user = Reflect.getProperty(WebSocketService.userDataList, user);
-				var avatarId = user.avatarId;
-				var avatar = Reflect.getProperty(WebSocketService.faceImageList, avatarId);
+				if (user != null)
+				{
+					var avatarId = user.avatarId;
+					var avatar = Reflect.getProperty(WebSocketService.faceImageList, avatarId);
 
-				newList.push({avatar: avatar});
+					newList.push({avatar: avatar});
+				}
 			}
 
 			model.setList(newList);

@@ -21,7 +21,7 @@ class WebSocketService
 	static public var playerCount:State<Int> = new State<Int>(0);
 	static public var maxVoteRound:State<Int> = new State<Int>(0);
 	static public var gameImageList:State<Array<Dynamic>> = new State<Array<Dynamic>>(null);
-	static public var voteConfig:State<Array<Dynamic>> = new State<Array<Dynamic>>(null);
+	static public var voteConfig:State<Dynamic> = new State<Dynamic>(null);
 	static public var userList:State<Array<String>> = new State<Array<String>>(null);
 	static public var userDataList:Dynamic = null;
 
