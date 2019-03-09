@@ -5,6 +5,22 @@ body {
 	font-family: Arial;
 }
 
+.fp_logo {
+	text-align: center;
+	position: relative;
+	top: 100px;
+	opacity: .1;
+}
+
+.fp_logo__img {
+	max-width: calc(100% - 20px);
+}
+
+.fp_room_name {
+	text-overflow: ellipsis;
+	max-width: 150px;
+}
+
 .fp_left_icon {
 	margin-right: 10px;
 }
@@ -14,13 +30,10 @@ body {
 }
 
 .fp_button--join_to_room {
-	position: absolute;
-	right: 20px;
-	top: 10px;
-	color: #9a8585;
+	color: #c59ec6;
 }
 
-.fp_button--create_room {
+.fp_button--primary {
 	margin: auto;
 	position: relative;
 	width: max-content;
@@ -34,7 +47,7 @@ body {
 	font-weight: bold;
 }
 
-.fp_button--create_room:hover {
+.fp_button--primary:hover {
 	background-color: #C2E0E9;
 }
 
@@ -100,17 +113,20 @@ body {
 .fp_room_entry {
 	background-color: #f5f5f5;
 	margin: 10px;
-	padding: 10px 10px 10px 20px;
+	padding: 10px 20px;
 	border-radius: 10px;
 	font-size: 2em;
-	color: #8e77d2;
+	color: #7e6990;
 	position: relative;
 	user-select: none;
 	cursor: pointer;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
 }
 
 .fp_room_entry:hover {
-	background-color: #DDD;
+	background-color: #C2E0E9;
 }
 
 .fp_lobby_container {

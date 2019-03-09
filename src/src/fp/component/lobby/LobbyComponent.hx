@@ -1,4 +1,5 @@
 package fp.component.lobby;
+import fp.service.WebSocketService;
 
 @:tink class LobbyComponent
 {
@@ -11,14 +12,11 @@ package fp.component.lobby;
 	public function new ()
 	{
 		model = new LobbyModel();
-		/*model.setList([
-			new Player({avatar: "abc"}),
-			new Player({avatar: "123"}),
-			new Player({avatar: "qaz"})
-		]);*/
+
+		//WebSocketService.getPlayerList().handle(model.setList);
 
 		view = new LobbyView({
-			//playerList: model.playerList,
+			playerList: model.playerList,
 			roomId: model.roomId,
 			closeLobbyRequest: closeLobbyRequest,
 			gameStartRequest: gameStartRequest
