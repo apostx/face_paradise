@@ -41,10 +41,15 @@ class Main
 		Browser.document.getElementById("fp_container").appendChild(layout.toElement());
 
 		var landingPage = new LandingPageComponent(
-			function(roomId) {
+			function(roomId, isServer) {
+				appModel.setType(isServer ? ApplicationType.Server : ApplicationType.Client);
 				lobbyPage.setRoomId(roomId);
-				layout.setView(capturePage.view);
-				capturePage.capture();
+				if (isServer) layout.setView(lobbyPage.view);
+				else
+				{
+					layout.setView(capturePage.view);
+					capturePage.capture();
+				}
 			},
 			appModel.setType.bind(ApplicationType.Server)
 		);

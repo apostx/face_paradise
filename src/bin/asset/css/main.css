@@ -1,8 +1,12 @@
 body {
-	background-color: #FFF;
+	background-color: #7E6991;
 	margin: 0;
 	padding: 0;
 	font-family: Arial;
+}
+
+.fp_left_icon {
+	margin-right: 10px;
 }
 
 .fp_button {
@@ -11,7 +15,7 @@ body {
 
 .fp_button--join_to_room {
 	position: absolute;
-	right: 30px;
+	right: 20px;
 	top: 10px;
 	color: #9a8585;
 }
@@ -20,19 +24,23 @@ body {
 	margin: auto;
 	position: relative;
 	width: max-content;
-	background-color: #DDD;
 	padding: 20px 40px;
 	margin-top: 50px;
 	border-radius: 10px;
 	font-size: 1.5em;
+	border-radius: 30px;
+	background-color: #FFF;
+	color: #7e6990;
+	font-weight: bold;
 }
 
 .fp_button--create_room:hover {
-	background-color: #BBB;
+	background-color: #C2E0E9;
 }
 
 .fp_button--refresh_room_list {
-
+	background-color: #C59FC6;
+	padding: 10px;
 }
 
 .fp_button--start_game {
@@ -63,6 +71,11 @@ body {
 	color: #ea4040;
 }
 
+.fp_title {
+	line-height: 45px;
+	margin-left: 20px;
+}
+
 .fp_room_list_container {
 	width: 80%;
 	margin: auto;
@@ -73,7 +86,10 @@ body {
 .fp_room_list_title {
 	display: flex;
 	justify-content: space-between;
-	padding: 0 20px;
+	background-color: #B6799F;
+	color: #FFF;
+	font-weight: bold;
+	font-size: 1.5em;
 }
 
 .fp_room_list {

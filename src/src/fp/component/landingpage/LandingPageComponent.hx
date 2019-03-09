@@ -4,7 +4,7 @@ import fp.service.WebSocketService;
 
 @:tink class LandingPageComponent
 {
-	var openRoomRequest:String->Void = _;
+	var openRoomRequest:String->Bool->Void = _;
 	var onRoomCreated:Void->Void = _;
 
 	public var view:LandingPageView;
@@ -16,12 +16,15 @@ import fp.service.WebSocketService;
 
 		view = new LandingPageView({
 			roomList: model.roomList,
-			openRoomRequest: openRoomRequest,
+			openRoomRequest: function(id, isServer) {
+				WebSocketService.joinRoom(id).handle(openRoomRequest.bind(id, isServer));
+			},
 			updateRoomListRequest: updateRoomList,
 			createRoomRequest: function() {
-				WebSocketService.createRoom();
-				onRoomCreated();
-				openRoomRequest("asd");
+				WebSocketService.createRoom().handle(function(){
+					onRoomCreated();
+					openRoomRequest(WebSocketService.room.id, true);
+				});
 			}
 		});
 

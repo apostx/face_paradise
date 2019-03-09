@@ -14,7 +14,6 @@ using tink.CoreApi;
 
 class CapturePageView extends View
 {
-	@:attribute var imagePath:String;
 	@:attribute var getMediaStream:Void->Future<MediaStream>;
 	@:attribute var onPictureCaptured:String->Void;
 
@@ -22,8 +21,7 @@ class CapturePageView extends View
 
 	function render() '
 		<div style="width: absolute; right: 0px;">
-			<img style="position: absolute; bottom: 0px; width: 100%; height: auto;" src={imagePath} />
-			<video style="position: absolute; right: 0px; width: 33%; height: auto;" autoplay id="camera"></video>
+			<video style="width: 100%; height: 100%;" autoplay id="camera"></video>
 		</div>
 	';
 

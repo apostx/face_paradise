@@ -7,21 +7,21 @@ import io.colyseus.Client.RoomAvailable;
 class LandingPageView extends View
 {
 	@:skipCheck @:attribute var roomList:List<RoomAvailable>;
-	@:attribute var openRoomRequest:String->Void;
+	@:attribute var openRoomRequest:String->Bool->Void;
 	@:attribute var updateRoomListRequest:Void->Void;
 	@:attribute var createRoomRequest:Void->Void;
 
 	function render() '
 		<div>
+			<div class="fp_room_list_title">
+				<div class="fp_title">Choose a game room</div>
+				<div class="fp_button fp_button--refresh_room_list" onclick=$updateRoomListRequest><i class="fas fa-sync-alt"></i></div>
+			</div>
 			<div class="fp_room_list_container">
-				<div class="fp_room_list_title">
-					<div>Choose a game room</div>
-					<div class="fp_button fp_button--refresh_room_list" onclick=$updateRoomListRequest><i class="fas fa-sync-alt"></i></div>
-				</div>
 				<ul class="fp_room_list">
 					<if {roomList != null}>
 						<for {room in roomList}>
-							<li class="fp_room_entry" onclick={openRoomRequest(room.roomId)}>
+							<li class="fp_room_entry" onclick={openRoomRequest(room.roomId, false)}>
 								{room.roomId}
 								<div class="fp_button fp_button--join_to_room">Join</div>
 							</li>
@@ -29,7 +29,7 @@ class LandingPageView extends View
 					</if>
 				</ul>
 			</div>
-			<div class="fp_button fp_button--create_room" onclick=$createRoomRequest>Create Room</div>
+			<div class="fp_button fp_button--create_room" onclick=$createRoomRequest><i class="fas fa-plus-circle fp_left_icon"></i>Create Room</div>
 		</div>
 	';
 }

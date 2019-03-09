@@ -1,6 +1,7 @@
 package fp.component.capture;
 
 import coconut.data.Model;
+import fp.service.WebSocketService;
 import js.Browser;
 import js.html.CanvasElement;
 import js.html.CanvasRenderingContext2D;
@@ -11,20 +12,6 @@ using tink.CoreApi;
 
 class CapturePageModel implements Model
 {
-	@:editable var isVisible:Bool = false;
-	@:editable var imagePath:String = "";
-
-	/*public function startStream():Void
-	{
-		var canvas:CanvasElement = cast Browser.document.getElementById('canvas');
-		var player:VideoElement = cast Browser.document.getElementById("camera");
-
-		getStream().handle(function(mediaStream)
-		{
-			player.srcObject = mediaStream;
-		});
-	}*/
-
 	public function makeCapture():Void
 	{
 		var canvas:CanvasElement = cast Browser.document.getElementById('canvas');
@@ -52,6 +39,6 @@ class CapturePageModel implements Model
 
 	public function onPictureCaptured(picture:String):Void
 	{
-		imagePath = picture;
+		WebSocketService.avatarUpload(picture);
 	}
 }

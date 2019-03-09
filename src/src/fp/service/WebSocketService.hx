@@ -9,7 +9,7 @@ using tink.CoreApi;
 class WebSocketService
 {
 	static var client:Client;
-	static var room:Room;
+	static public var room:Room;
 
 	static var showStartSignalTrigger:SignalTrigger<Noise> = new SignalTrigger<Noise>();
 	static public var showStartSignal:Signal<Noise> = showStartSignalTrigger.asSignal();
@@ -50,37 +50,37 @@ class WebSocketService
 	static public function createRoom():Future<String>
 	{
 		var t = Future.trigger();
-		
-		room = client.join("", ["create" => "true"]);
+
+		room = client.join("game", ["create" => "true"]);
 		room.onMessage = onMessage;
 		room.onStateChange = onStateChange;
-		
+
 		room.onJoin = function () {
 			t.trigger(room.id);
 		};
-		
+
 		return t;
 	}
 
 	static public function joinRoom(roomId:String):Future<String>
 	{
 		var t = Future.trigger();
-		
+
 		room = client.join(roomId);
 		room.onMessage = onMessage;
 		room.onStateChange = onStateChange;
 		room.onJoin = function () {
 			t.trigger(room.id);
 		};
-		
+
 		return t;
 	}
-	
+
 	static function onMessage(message:{event:String, data:Dynamic})
 	{
 		switch(message.event)
 		{
-			case "displayStart": 
+			case "displayStart":
 				showStartSignalTrigger.trigger(Noise);
 			default:
 		}
