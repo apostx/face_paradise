@@ -105,7 +105,7 @@ class TakeGamePicsModel implements Model
 	
 	private function onPicsAreReady2()
 	{
-		saveCapturedPicture();
+		saveCapturedPicture(levelData[levelData.length - 1]);
 		VideoStreamService.hideVideo();
 		WebSocketService.faceImagesUpload(cast capturedPictureList);
 		onPicsAreReady();
@@ -118,7 +118,7 @@ class TakeGamePicsModel implements Model
 			200
 		);
 		
-		saveCapturedPicture();
+		saveCapturedPicture(currentImageId);
 
 		return {
 			currentStep: currentStep + 1,
@@ -127,10 +127,10 @@ class TakeGamePicsModel implements Model
 		};
 	}
 	
-	function saveCapturedPicture()
+	function saveCapturedPicture(gameImageId:String)
 	{
 		capturedPictureList.push({
-			gameImageId: currentImageId,
+			gameImageId: gameImageId,
 			faceImage: VideoStreamService.capturePicture()
 		});
 	}
