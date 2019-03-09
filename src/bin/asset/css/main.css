@@ -246,7 +246,7 @@ html, body {
 }
 
 .fp_take_pic__footer_progress--in_progress {
-	transition: opacity .5s linear 3s, width 3s linear;
+	transition: opacity .5s linear 2s, width 2s linear;
 	width: 100%;
 	opacity: 0;
 }

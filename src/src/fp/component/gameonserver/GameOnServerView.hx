@@ -1,5 +1,6 @@
 package fp.component.gameonserver;
 
+import coconut.data.List;
 import coconut.ui.View;
 
 class GameOnServerView extends View
@@ -9,7 +10,7 @@ class GameOnServerView extends View
 	@:attribute var currentStep:UInt;
 	@:attribute var currentImage:String;
 	@:attribute var remainingTimePercent:Float;
-	@:skipCheck @:attribute var playerList:Array<String>;
+	@:skipCheck @:attribute var playerList:List<String>;
 
 	function render() '
 		<div>
@@ -47,6 +48,6 @@ class GameOnServerView extends View
 
 	function getImage(index)
 	{
-		return "url(" + playerList[index] + ")";
+		return "url(" + playerList.toArray()[index] + ")";
 	}
 }

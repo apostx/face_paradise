@@ -5,18 +5,13 @@ import coconut.data.Model;
 
 class GameOnClientModel implements Model
 {
-	@:skipCheck @:external private var voteConfig:Dynamic;
+	@:observable var playerList:List<String> = [];
+	@:observable var gameImageId:String = "";
 
-	@:skipCheck @:computed var playerList:Array<String> = calculatePlayers();
-	function calculatePlayers()
-	{
-		if (voteConfig != null && Reflect.hasField(voteConfig, gameImageId)) return Reflect.getProperty(voteConfig, gameImageId);
-
-		return null;
+	@:transition function nextStep(data)
+	{return { gameImageId: data.gameImageId };
 	}
-
-	@:observable private var gameImageId:String = "";
-	@:transition function nextStep(data) return { gameImageId: data.gameImageId };
+	@:transition function setPlayerList(data) return { playerList: data };
 }
 
 typedef Test = {

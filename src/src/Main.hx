@@ -119,6 +119,7 @@ class Main
 		);
 
 		WebSocketService.mainState.observe().bind(function(v) {
+			trace("STATE:", v, appModel.appType);
 			switch(v)
 			{
 				case "game" if (appModel.appType == ApplicationType.Server):
@@ -130,7 +131,7 @@ class Main
 				case "vote" if (appModel.appType == ApplicationType.Client):
 					layout.setView(gameOnClient.view);
 
-				case _: trace("STATE:", v);
+				case _: trace("MISSING STATE:", v);
 			}
 		});
 		waitingForGameStart = new WaitingForGameStartComponent();
@@ -153,6 +154,7 @@ class Main
 		);
 
 		WebSocketService.nextVoteSignalTrigger.handle(function(d) {
+			trace("LLLLLLLLLLLLLLLLLL", d);
 			if (appModel.appType == ApplicationType.Client)
 			{
 				gameOnClient.nextStep(d);

@@ -1,4 +1,7 @@
 package fp.component.gameonserver;
+
+import coconut.data.List;
+import fp.service.WebSocketService;
 import tink.state.Observable;
 
 @:tink class GameOnServerComponent
@@ -12,7 +15,6 @@ import tink.state.Observable;
 	public function new()
 	{
 		model = new GameOnServerModel({
-			voteConfig: voteConfig,
 			onGameEnd: onGameEnd
 		});
 
@@ -22,7 +24,28 @@ import tink.state.Observable;
 			currentImage: model.currentImage,
 			playerList: model.playerList
 		});
+
+		voteConfig.bind(function(v){
+			refreshPlayerList();
+		});
 	}
 
-	public function nextStep(data:Dynamic) { model.nextStep(data); }
+	public function nextStep(data:Dynamic)
+	{
+		model.nextStep(data);
+		refreshPlayerList();
+	}
+
+	function refreshPlayerList()
+	{
+		var playerList:Array<String> = [];
+		if (voteConfig.value != null && Reflect.hasField(voteConfig.value, model.observables.gameImageId))
+		{
+			model.setPlayerList(
+				List.fromArray(
+					Reflect.getProperty(WebSocketService.faceImageList, Reflect.getProperty(voteConfig.value, model.observables.gameImageId.value))
+				)
+			);
+		}
+	}
 }

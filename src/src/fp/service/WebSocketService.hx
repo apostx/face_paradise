@@ -97,6 +97,8 @@ class WebSocketService
 
 	static function onMessage(message:{event:String, data:Dynamic})
 	{
+		trace("### INCOME MESSAGE:", message.event);
+		trace("######", message.data);
 		switch(message.event)
 		{
 			case "displayStart":

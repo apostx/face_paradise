@@ -1,11 +1,12 @@
 package fp.component.gameonclient;
 
+import coconut.data.List;
 import coconut.ui.View;
 import fp.component.gameonclient.GameOnClientModel.Test;
 
 class GameOnClientView extends View
 {
-	@:skipCheck @:attribute var playerList:Array<String>;
+	@:attribute var playerList:List<String>;
 
 	@:attribute var openVoteRequest:String->Void;
 	@:state var isAlreadyVoted:Bool = false;
@@ -18,7 +19,7 @@ class GameOnClientView extends View
 			<ul class="fp_room_list">
 				<if {playerList != null}>
 					<for {i in 0...playerList.length}>
-						<li class="fp_room_entry" onclick={onClick(playerList[i])}>
+						<li class="fp_room_entry" onclick={onClick(playerList.toArray()[i])}>
 							<div class="fp_player" style="background-image: ${getImage(i)}"></div>
 						</li>
 					</for>
@@ -35,6 +36,6 @@ class GameOnClientView extends View
 
 	function getImage(index)
 	{
-		return "url(" + playerList[index] + ")";
+		return "url(" + playerList.toArray()[index] + ")";
 	}
 }

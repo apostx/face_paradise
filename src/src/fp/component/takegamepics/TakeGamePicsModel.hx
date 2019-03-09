@@ -11,7 +11,7 @@ import js.html.VideoElement;
 
 class TakeGamePicsModel implements Model
 {
-	@:constant private var timePerStep:UInt = 3000;
+	@:constant private var timePerStep:UInt = 2000;
 
 	@:external private var onPicsAreReady:Void->Void;
 
@@ -24,7 +24,7 @@ class TakeGamePicsModel implements Model
 	@:computed var currentImage:String = Reflect.getProperty(WebSocketService.gameImageList.value, currentImageId);
 	@:computed var currentImageId:String = levelData[currentStep];
 	@:skipCheck @:computed var pictureList:Array<String> = generatePictureList();
-	
+
 	@:skipCheck @:editable var capturedPictureList:Array<Dynamic> = null;
 
 	function generatePictureList()
@@ -58,7 +58,7 @@ class TakeGamePicsModel implements Model
 			checkTime,
 			100
 		);
-		
+
 		VideoStreamService.showVideo();
 		capturedPictureList = new Array<Dynamic>();
 
@@ -102,7 +102,7 @@ class TakeGamePicsModel implements Model
 			return { remainingTimePercent: newRemainingTime / timePerStep * 100 };
 		}
 	}
-	
+
 	private function onPicsAreReady2()
 	{
 		saveCapturedPicture(levelData[levelData.length - 1]);
@@ -113,11 +113,12 @@ class TakeGamePicsModel implements Model
 
 	@:transition private function startNextStep()
 	{
+		trace(">>> START NEXT STEP!", currentStep);
 		Timer.delay(
 			checkTime,
 			200
 		);
-		
+
 		saveCapturedPicture(currentImageId);
 
 		return {
@@ -126,9 +127,10 @@ class TakeGamePicsModel implements Model
 			remainingTimePercent: 0
 		};
 	}
-	
+
 	function saveCapturedPicture(gameImageId:String)
 	{
+		trace(">>> send picture:", gameImageId);
 		capturedPictureList.push({
 			gameImageId: gameImageId,
 			faceImage: VideoStreamService.capturePicture()
