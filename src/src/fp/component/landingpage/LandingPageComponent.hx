@@ -1,6 +1,7 @@
 package fp.component.landingpage;
 
 import fp.service.WebSocketService;
+import haxe.Timer;
 
 @:tink class LandingPageComponent
 {
