@@ -29,7 +29,7 @@ class TakeGamePicsView extends View
 			<div class="fp_take_pic__my_photo">
 			</div>
 			<div class="fp_take_pic__footer">
-				<div class={"fp_take_pic__footer_progress" + (remainingTimePercent == 100 ? " fp_take_pic__footer_progress--full" : "")} style=${remainingTimePercent == 100 ? "" : "width:" + remainingTimePercent + "%"}>
+				<div class={"fp_take_pic__footer_progress" + (remainingTimePercent > 0 ? " fp_take_pic__footer_progress--in_progress" : " fp_take_pic__footer_progress--empty")}>
 				</div>
 			</div>
 		</div>

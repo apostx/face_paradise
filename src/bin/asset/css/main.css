@@ -202,8 +202,14 @@ body {
 	opacity: 1;
 }
 
-.fp_take_pic__footer_progress--full {
-	transition: opacity .5s linear, width 0s linear .9s;
-	width: 0%;
+.fp_take_pic__footer_progress--in_progress {
+	transition: opacity .5s linear 3s, width 3s linear;
+	width: 100%;
 	opacity: 0;
+}
+
+.fp_take_pic__footer_progress--empty {
+	transition: opacity 0s linear, width 0s linear;
+	width: 0%;
+	opacity: 1;
 }
