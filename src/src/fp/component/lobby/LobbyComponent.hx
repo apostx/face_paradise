@@ -36,9 +36,9 @@ import tink.state.Observable;
 		{
 			appType: appType,
 			playerList: model.playerList,
-			roomId: model.roomId,
 			closeLobbyRequest: closeLobbyRequest,
-			gameStartRequest: WebSocketService.startGame
+			gameStartRequest: WebSocketService.startGame,
+			custromRoomId: WebSocketService.getCustomRoomId(model.roomId)
 		});
 	}
 

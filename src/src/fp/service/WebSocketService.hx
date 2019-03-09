@@ -44,10 +44,22 @@ class WebSocketService
 
 		client.getAvailableRooms("game", function(roomList: Array<RoomAvailable>, ?opt:String)
 		{
+			lastRoomList = roomList;
 			t.trigger(roomList);
 		});
 
 		return t;
+	}
+
+	static var lastRoomList:Array<RoomAvailable> = [];
+	static public function getCustomRoomId(roomId):String
+	{
+		for (room in lastRoomList)
+		{
+			if (room.roomId == roomId) return room.metadata;
+		}
+
+		return "Room #";
 	}
 
 	static public function createRoom():Future<String>
@@ -59,7 +71,9 @@ class WebSocketService
 		room.onStateChange = onStateChange;
 
 		room.onJoin = function () {
-			t.trigger(room.id);
+			getRoomList().handle(function() {
+				t.trigger(room.id);
+			});
 		};
 
 		return t;

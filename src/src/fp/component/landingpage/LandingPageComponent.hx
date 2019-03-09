@@ -26,7 +26,8 @@ import haxe.Timer;
 					onRoomCreated();
 					openRoomRequest(WebSocketService.room.id, true);
 				});
-			}
+			},
+			getCustomRoomId: WebSocketService.getCustomRoomId
 		});
 
 		updateRoomList();

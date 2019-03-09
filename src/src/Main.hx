@@ -73,8 +73,15 @@ class Main
 			function () {
 				layout.setView(waitingForGameStart.view);
 				Timer.delay(function() {
-					layout.setView(gameOnServer.view);
-					gameOnServer.start();
+					if (appModel.appType == ApplicationType.Server)
+					{
+						layout.setView(gameOnServer.view);
+						gameOnServer.start();
+					}
+					else
+					{
+						layout.setView(gameOnClient.view);
+					}
 				}, 1000);
 			}
 		);
