@@ -11,6 +11,9 @@ class WebSocketService
 	static var client:Client;
 	static var room:Room;
 	
+	static var showStartSignalTrigger:SignalTrigger<Noise> = new SignalTrigger<Noise>();
+	static public var showStartSignal:Signal<Noise> = showStartSignalTrigger.asSignal();
+	
 	static public var mainState:State<String> = new State<String>(null);
 	static public var voteRound:State<Int> = new State<Int>(0);
 	static public var playerCount:State<Int> = new State<Int>(0);
@@ -32,6 +35,7 @@ class WebSocketService
 		return t;
 	}
 	
+	// # 1 before lobby
 	static public function getRoomList(roomId:String):Future<Array<RoomAvailable>>
 	{
 		var t = Future.trigger();
@@ -44,16 +48,29 @@ class WebSocketService
 		return t;
 	}
 	
-	static public function joinRoom(roomId:String):Void
+	// #2 lobby
+	static public function joinRoom(roomId:String):Future<String>
 	{
+		var t = Future.trigger();
+		
 		room = client.join(roomId);
 		room.onMessage = onMessage;
 		room.onStateChange = onStateChange;
+		room.onJoin = function () {
+			t.trigger(room.id);
+		};
+		
+		return t;
 	}
 	
-	static function onMessage(message)
+	static function onMessage(message:{event:String, data:Dynamic})
 	{
-
+		switch(message.event)
+		{
+			case "displayStart": 
+				showStartSignalTrigger.trigger(Noise);
+			default:
+		}
 	}
 	
 	static function onStateChange(state:Dynamic)
