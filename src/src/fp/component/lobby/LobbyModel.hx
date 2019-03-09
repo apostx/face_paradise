@@ -5,7 +5,7 @@ import fp.component.gameonclient.GameOnClientModel.Test;
 
 class LobbyModel implements Model
 {
-	@:observable var roomId:String = "";
+	@:observable var roomId:String = null;
 	@:skipCheck @:observable var playerList:Array<Test> = null;
 
 	@:transition public function setList(v) return { playerList: v };
