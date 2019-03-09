@@ -3,6 +3,7 @@ package;
 import fp.ApplicationModel;
 import fp.Layout;
 import fp.component.capture.CapturePageComponent;
+import fp.component.gameonclient.GameOnClientComponent;
 import fp.component.gameonserver.GameOnServerComponent;
 import fp.component.landingpage.LandingPageComponent;
 import fp.component.lobby.LobbyComponent;
@@ -22,6 +23,7 @@ class Main
 	var takeGamePics:TakeGamePicsComponent;
 	var waitingForGameStart:WaitingForGameStartComponent;
 	var gameOnServer:GameOnServerComponent;
+	var gameOnClient:GameOnClientComponent;
 
 	public function new()
 	{
@@ -66,8 +68,14 @@ class Main
 
 		gameOnServer = new GameOnServerComponent();
 
+		gameOnClient = new GameOnClientComponent(
+			function(id) {
+				trace(id);
+			}
+		);
 
-		layout.setView(landingPage.view);
+
+		layout.setView(gameOnClient.view);
 
 		//layout.setView(gameOnServer.view);
 		//gameOnServer.start();

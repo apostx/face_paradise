@@ -43,3 +43,5 @@ body{background-color:#FFF;margin:0;padding:0;font-family:Arial;}
 .fp_game__player_photo{width:10em;height:10em;border-radius:10px;position:relative;background-color:#CCC;margin-top:20px;}
 .fp_game__player_name{position:absolute;color:#555;font-size:20px;font-weight:bold;top:10px;left:10px;}
 .fp_game_area{}
+.fp_player_list_container{width:80%;margin:auto;position:relative;margin-top:10%;}
+.fp_player_list_container--voted{pointer-events:none;}

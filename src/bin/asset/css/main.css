@@ -314,3 +314,14 @@ body {
 .fp_game_area {
 
 }
+
+.fp_player_list_container {
+	width: 80%;
+	margin: auto;
+	position: relative;
+	margin-top: 10%;
+}
+
+.fp_player_list_container--voted {
+	pointer-events: none;
+}
