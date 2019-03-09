@@ -21,22 +21,6 @@ class CapturePageModel implements Model
 		context.drawImage(player, 0, 0, canvas.width, canvas.height);
 	}
 
-	public function getMediaStream():Future<MediaStream>
-	{
-		var t = Future.trigger();
-
-		var onComplete = function(mediaStream)
-		{
-			t.trigger(mediaStream);
-		}
-
-		untyped __js__('navigator.mediaDevices.getUserMedia({video: true}).then({0}).catch(function(error) {
-			window.document.write(error);
-		});', onComplete);
-
-		return t.asFuture();
-	}
-
 	public function onPictureCaptured(picture:String):Void
 	{
 		WebSocketService.avatarUpload(picture);

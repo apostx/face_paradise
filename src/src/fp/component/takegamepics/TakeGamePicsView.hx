@@ -1,6 +1,15 @@
 package fp.component.takegamepics;
 
 import coconut.ui.View;
+import fp.service.VideoStreamService;
+import js.Browser;
+import js.html.CanvasElement;
+import js.html.CanvasRenderingContext2D;
+import js.html.Element;
+import js.html.MediaStream;
+import js.html.VideoElement;
+
+using tink.CoreApi;
 
 class TakeGamePicsView extends View
 {
@@ -10,6 +19,8 @@ class TakeGamePicsView extends View
 	@:attribute var isWaitingForPreloading:Bool;
 
 	@:skipCheck @:attribute var pictureList:Array<String>;
+	
+	public var video:VideoElement;
 
 	function render() '
 		<div>

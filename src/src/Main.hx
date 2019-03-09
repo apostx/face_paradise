@@ -11,9 +11,13 @@ import fp.component.lobby.LobbyComponent;
 import fp.component.takegamepics.TakeGamePicsComponent;
 import fp.component.waitingforgamestart.WaitingForGameStartComponent;
 import fp.component.waitingforpics.WaitingForPicsComponent;
+import fp.service.VideoStreamService;
 import fp.service.WebSocketService;
 import haxe.Timer;
 import js.Browser;
+import js.html.MediaStream;
+import js.html.VideoElement;
+import tink.CoreApi.Future;
 
 class Main
 {
@@ -32,8 +36,37 @@ class Main
 	{
 		WebSocketService.connect().handle(onConnect);
 	}
+	
+	function getMediaStream():Future<MediaStream>
+	{
+		var t = Future.trigger();
+		
+		var onComplete = function(mediaStream)
+		{
+			t.trigger(mediaStream);
+		}
 
+		untyped __js__('navigator.mediaDevices.getUserMedia({video: true}).then({0}).catch(function(error) {
+			window.document.write(error);
+		});', onComplete);
+
+		return t.asFuture();
+	}
+	
 	function onConnect()
+	{
+		getMediaStream().handle(function(mediaStream)
+        {
+            var video:VideoElement = VideoStreamService.getVideoElement();
+			
+            video.srcObject = mediaStream;
+			video.hidden = true;
+			
+			onStream();
+        });
+	}
+
+	function onStream()
 	{
 		var appModel = new ApplicationModel();
 		var layout = new Layout({});

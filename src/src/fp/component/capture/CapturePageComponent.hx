@@ -11,7 +11,6 @@ package fp.component.capture;
 		var model = new CapturePageModel();
 
 		view = new CapturePageView({
-			getMediaStream: model.getMediaStream,
 			onPictureCaptured: function(pic) {
 				model.onPictureCaptured(pic);
 				openRoomRequest();
