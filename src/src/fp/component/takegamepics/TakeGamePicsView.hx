@@ -19,7 +19,7 @@ class TakeGamePicsView extends View
 					<if { i < currentStep }>
 						<i class="fas fa-check-circle fp_take_pic__progress_done"></i>
 					<else>
-						$i
+						{ i + 1 }
 					</if>
 					</div>
 				</for>

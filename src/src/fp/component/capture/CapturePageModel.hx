@@ -13,41 +13,43 @@ class CapturePageModel implements Model
 {
 	@:editable var isVisible:Bool = false;
 	@:editable var imagePath:String = "";
-	
+
 	/*public function startStream():Void
 	{
 		var canvas:CanvasElement = cast Browser.document.getElementById('canvas');
 		var player:VideoElement = cast Browser.document.getElementById("camera");
-		
+
 		getStream().handle(function(mediaStream)
 		{
 			player.srcObject = mediaStream;
 		});
 	}*/
-	
+
 	public function makeCapture():Void
 	{
 		var canvas:CanvasElement = cast Browser.document.getElementById('canvas');
 		var player:VideoElement = cast Browser.document.getElementById("camera");
-		
+
 		var context:CanvasRenderingContext2D = canvas.getContext2d();
 		context.drawImage(player, 0, 0, canvas.width, canvas.height);
 	}
-	
+
 	public function getMediaStream():Future<MediaStream>
 	{
 		var t = Future.trigger();
-		
+
 		var onComplete = function(mediaStream)
 		{
 			t.trigger(mediaStream);
 		}
-		
-		untyped __js__('navigator.mediaDevices.getUserMedia({video: true}).then({0})', onComplete);
-		
+
+		untyped __js__('navigator.mediaDevices.getUserMedia({video: true}).then({0}).catch(function(error) {
+			window.document.write(error);
+		});', onComplete);
+
 		return t.asFuture();
 	}
-	
+
 	public function onPictureCaptured(picture:String):Void
 	{
 		imagePath = picture;

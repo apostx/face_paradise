@@ -23,4 +23,6 @@ package fp.component.capture;
 
 		//model.startStream(cast view.video.toElement());
 	}
+
+	public function capture() { view.capture(); }
 }

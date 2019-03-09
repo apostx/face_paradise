@@ -1,13 +1,11 @@
-package fp.component.takegamepics;
+package fp.component.gameonserver;
 
 import coconut.data.Model;
 import haxe.Timer;
 
-class TakeGamePicsModel implements Model
+class GameOnServerModel implements Model
 {
 	@:constant private var timePerStep:UInt = 3000;
-
-	@:external private var onPicsAreReady:Void->Void;
 
 	@:observable var currentStep:UInt = 0;
 	@:observable var stepStartTime:Float = 0;
@@ -29,7 +27,7 @@ class TakeGamePicsModel implements Model
 		var newRemainingTime = Date.now().getTime() - stepStartTime;
 		if (newRemainingTime >= timePerStep)
 		{
-			if (currentStep < 4)
+			if (currentStep < 9)
 			{
 				Timer.delay(
 					startNextStep,
@@ -40,10 +38,10 @@ class TakeGamePicsModel implements Model
 			}
 			else
 			{
-				Timer.delay(
-					onPicsAreReady,
+				/*Timer.delay(
+					//GAME END
 					1000
-				);
+				);*/
 				return { currentStep: currentStep + 1, remainingTimePercent: 100 };
 			}
 		}
